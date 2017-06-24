@@ -1,4 +1,6 @@
-package main.java;
+package game;
+
+import pieces.Piece;
 
 /**
  * Created by Coen on 23-6-2017.
@@ -19,6 +21,7 @@ public class Cell {
         if (isOccupied()) {
             this.piece.kill();
         }
+        piece.setPosition(this);
         this.piece = piece;
     }
 
@@ -30,6 +33,10 @@ public class Cell {
 
     public boolean isOccupied() {
         return this.piece != null;
+    }
+
+    public Piece getPiece() {
+        return piece;
     }
 
     public String toString() {
