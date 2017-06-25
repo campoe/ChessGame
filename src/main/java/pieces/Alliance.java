@@ -11,4 +11,20 @@ public enum Alliance {
 
     }
 
+    public int getDirection() {
+        if (this.equals(WHITE)) {
+            return 1;
+        } else {
+            return -1;
+        }
+    }
+
+    public String toString() {
+        if (this.equals(WHITE)) {
+            return "W";
+        } else {
+            return "B";
+        }
+    }
+
 }

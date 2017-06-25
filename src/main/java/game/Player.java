@@ -16,7 +16,7 @@ public class Player {
 
     public Alliance alliance;
 
-    private List<Piece> pieces = new ArrayList<>();
+    private Piece[] pieces = new Piece[16];
 
     public Player(Alliance alliance) {
         this.alliance = alliance;
@@ -26,45 +26,53 @@ public class Player {
     public void initializePieces() {
         if (this.alliance == Alliance.WHITE) {
             for (int i = 0; i < PAWNS; i++) {
-                pieces.add(new Pawn(i, 1, i, Alliance.WHITE));
+                pieces[Indeces.PAWNS[i]] = new Pawn(i, 1, i, Alliance.WHITE);
             }
             for (int i = 0; i < ROOKS; i++) {
-                pieces.add(new Rook(i, 0, 7 * i, Alliance.WHITE));
+                pieces[Indeces.ROOKS[i]] = new Rook(i, 0, 7 * i, Alliance.WHITE);
             }
             for (int i = 0; i < BISHOPS; i++) {
-                pieces.add(new Bishop(i, 0, 3 * i + 2, Alliance.WHITE));
+                pieces[Indeces.BISHOPS[i]] = new Bishop(i, 0, 3 * i + 2, Alliance.WHITE);
             }
             for (int i = 0; i < KNIGHTS; i++) {
-                pieces.add(new Knight(i, 0, 5 * i + 1, Alliance.WHITE));
+                pieces[Indeces.KNIGHTS[i]] = new Knight(i, 0, 5 * i + 1, Alliance.WHITE);
             }
-            pieces.add(new King(0, 0, 4, Alliance.WHITE));
-            pieces.add(new Queen(0, 0, 3, Alliance.WHITE));
+            pieces[Indeces.KING] = new King(0, 0, 4, Alliance.WHITE);
+            pieces[Indeces.QUEEN] = new Queen(0, 0, 3, Alliance.WHITE);
         } else {
             for (int i = 0; i < PAWNS; i++) {
-                pieces.add(new Pawn(i, 6, i, Alliance.BLACK));
+                pieces[Indeces.PAWNS[i]] = new Pawn(i, 6, i, Alliance.BLACK);
             }
             for (int i = 0; i < ROOKS; i++) {
-                pieces.add(new Rook(i, 7, 7 * i, Alliance.BLACK));
+                pieces[Indeces.ROOKS[i]] = new Rook(i, 7, 7 * i, Alliance.BLACK);
             }
             for (int i = 0; i < BISHOPS; i++) {
-                pieces.add(new Bishop(i, 7, 3 * i + 2, Alliance.BLACK));
+                pieces[Indeces.BISHOPS[i]] = new Bishop(i, 7, 3 * i + 2, Alliance.BLACK);
             }
             for (int i = 0; i < KNIGHTS; i++) {
-                pieces.add(new Knight(i, 7, 5 * i + 1, Alliance.BLACK));
+                pieces[Indeces.KNIGHTS[i]] = new Knight(i, 7, 5 * i + 1, Alliance.BLACK);
             }
-            pieces.add(new King(0, 7, 4, Alliance.BLACK));
-            pieces.add(new Queen(0, 7, 3, Alliance.BLACK));
+            pieces[Indeces.KING] = new King(0, 7, 4, Alliance.BLACK);
+            pieces[Indeces.QUEEN] = new Queen(0, 7, 3, Alliance.BLACK);
         }
     }
 
     public boolean isWhite() {
         return alliance == Alliance.WHITE;
     }
-    public List<Piece> getPieces() {
+    public Piece[] getPieces() {
         return pieces;
     }
-    public void setPieces(List<Piece> pieces) {
+    public Piece getPiece(int i) {
+        return pieces[i];
+    }
+    public void setPieces(Piece[] pieces) {
         this.pieces = pieces;
+    }
+    public void setPiece(int i, Piece piece) {
+        if (!(i < 0 || i >= pieces.length)) {
+            pieces[i] = piece;
+        }
     }
 
     public void makeMove() {

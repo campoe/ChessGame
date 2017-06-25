@@ -11,7 +11,7 @@ import java.util.List;
  */
 public class Knight extends Piece {
 
-    private static final int[] DELTAS = {-17, -15, -10, -6, 6, 10, 15, 17};
+    private static final int[] DELTAS = new int[]{-17, -15, -10, -6, 6, 10, 15, 17};
 
     public Knight(int id, int row, int column, Alliance alliance) {
         super(id, row, column, alliance);
@@ -21,9 +21,9 @@ public class Knight extends Piece {
         int coordinate;
         List<Move> moves = new ArrayList<>();
         for (int delta : DELTAS) {
-            coordinate = this.position.getColumn() + this.position.getRow() * Board.ROW_COUNT + delta;
-            if (super.validateMove(this.position.getColumn() + this.position.getRow() * Board.ROW_COUNT, coordinate)) {
-                if (isFirstColumn(this.position, delta) || isSecondColumn(this.position, delta) || isSeventhColumn(this.position, delta) || isEightColumn(this.position, delta)) {
+            coordinate = this.position.getIndex() + delta;
+            if (super.validateMove(this.position.getIndex(), coordinate)) {
+                if (isFirstColumn(this.position.getIndex(), delta) || isSecondColumn(this.position.getIndex(), delta) || isSeventhColumn(this.position.getIndex(), delta) || isEightColumn(this.position.getIndex(), delta)) {
                     continue;
                 }
                 Cell cell = Board.getInstance().getCell(coordinate);
@@ -41,28 +41,24 @@ public class Knight extends Piece {
         return moves;
     }
 
-    public boolean isFirstColumn(Cell cell, int delta) {
-        int position = cell.getColumn() + cell.getRow() * Board.ROW_COUNT;
+    private boolean isFirstColumn(int position, int delta) {
         return (position % 8 == 0) && (delta == -17 || delta == -10 || delta == 6 || delta == 15);
     }
 
-    public boolean isSecondColumn(Cell cell, int delta) {
-        int position = cell.getColumn() + cell.getRow() * Board.ROW_COUNT;
+    private boolean isSecondColumn(int position, int delta) {
         return (position % 8 == 1) && (delta == -10 || delta == 6);
     }
 
-    public boolean isSeventhColumn(Cell cell, int delta) {
-        int position = cell.getColumn() + cell.getRow() * Board.ROW_COUNT;
+    private boolean isSeventhColumn(int position, int delta) {
         return (position % 8 == 6) && (delta == -6 || delta == 10);
     }
 
-    public boolean isEightColumn(Cell cell, int delta) {
-        int position = cell.getColumn() + cell.getRow() * Board.ROW_COUNT;
+    private boolean isEightColumn(int position, int delta) {
         return (position % 8 == 7) && (delta == -15 || delta == -6 || delta == 10 || delta == 17);
     }
 
     public String toString() {
-        return alliance.toString() + "[Knight]" + id;
+        return alliance.toString() + "KN" + id;
     }
 
 }

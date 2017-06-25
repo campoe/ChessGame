@@ -39,9 +39,13 @@ public class Cell {
         return piece;
     }
 
+    public int getIndex() {
+        return this.getColumn() + this.getRow() * Board.ROW_COUNT;
+    }
+
     public String toString() {
         if (!isOccupied()) {
-            return "EMPTY";
+            return "NONE";
         }
         return this.piece.toString();
     }

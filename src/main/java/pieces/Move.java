@@ -21,4 +21,14 @@ public class Move {
         this.attackedPiece = null;
     }
 
+    public int getDestination() {
+        return destination;
+    }
+    public Piece getAttackedPiece() {
+        return attackedPiece;
+    }
+    public Piece getPiece() {
+        return piece;
+    }
+
 }

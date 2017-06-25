@@ -14,13 +14,15 @@ public abstract class Piece {
     protected boolean alive;
     protected Alliance alliance;
     protected Cell position;
+    protected boolean firstMove;
 
     public Piece(int id, int row, int column, Alliance alliance) {
         this.id = id;
         this.kills = 0;
         this.alive = true;
         this.alliance = alliance;
-        Board.getInstance().getCells()[column + row * Board.ROW_COUNT].occupy(this);
+        this.firstMove = true;
+        Board.getInstance().getCells()[Board.index(row, column)].occupy(this);
     }
 
     public boolean validateMove(int fromColumn, int fromRow, int toColumn, int toRow) {
@@ -82,6 +84,15 @@ public abstract class Piece {
     }
     public Alliance getAlliance() {
         return alliance;
+    }
+    public boolean isFirstMove() {
+        return firstMove;
+    }
+    public void setAlive(boolean alive) {
+        this.alive = alive;
+    }
+    public void setFirstMove(boolean firstMove) {
+        this.firstMove = firstMove;
     }
 
 }

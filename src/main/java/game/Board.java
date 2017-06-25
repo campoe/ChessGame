@@ -1,5 +1,10 @@
 package game;
 
+import pieces.Move;
+import pieces.Piece;
+
+import java.util.List;
+
 /**
  * Created by Coen on 23-6-2017.
  */
@@ -75,13 +80,13 @@ public class Board {
     }
 
     public String toString() {
-        String res = " ---------------------------------\n";
+        String res = " +------+------+------+------+------+------+------+------+\n";
         for (int y = 0; y < ROW_COUNT; y++) {
             for (int x = 0; x < COLUMN_COUNT; x++) {
                 res += " | " + getCell(y, x).toString();
             }
             res += " |\n";
-            res += " ---------------------------------\n";
+            res += " +------+------+------+------+------+------+------+------+\n";
         }
         return res;
     }
@@ -91,6 +96,17 @@ public class Board {
             for (int x = 0; x < COLUMN_COUNT; x++) {
                 cells[x + y * ROW_COUNT] = new Cell(y, x);
             }
+        }
+    }
+
+    public static void main(String[] args) {
+        Game.getInstance().getBlack();
+        System.out.println(Board.getInstance());
+        Piece piece = Game.getInstance().getBlack().getPiece(6);
+        System.out.println(piece);
+        List<Move> moves = (List<Move>) piece.legalMoves();
+        for (Move move : moves) {
+            System.out.println("Destination: " + move.getDestination());
         }
     }
 
