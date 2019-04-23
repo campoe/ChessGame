@@ -7,4 +7,4 @@ Besides the basic chess functionality, the game provides:
 - Rotate the board
 - Show/hide hints
 
-![Chess Game](chess_game_screenshot_1.png)
+![Chess Game](chess_game_screenshot.png)
