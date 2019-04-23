@@ -6,3 +6,5 @@ Besides the basic chess functionality, the game provides:
 - Piece information (such as the number of other pieces it took)
 - Rotate the board
 - Show/hide hints
+
+![Chess Game](chess_game_screenshot_1.png)
